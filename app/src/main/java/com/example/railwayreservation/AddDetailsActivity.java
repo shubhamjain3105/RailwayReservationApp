@@ -12,25 +12,28 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class AddDetailsActivity extends AppCompatActivity {
-    EditText editText3,editText5;
+    EditText editText3,editText5,editText8;
 
     public void  addD(View view)
     { SQLiteDatabase myData = this.openOrCreateDatabase("RailData", MODE_PRIVATE, null);
         editText3 = findViewById(R.id.editText3);
         editText5 = findViewById(R.id.editText5);
+        editText8=findViewById ( R.id.editText8 );
         String tn ="0";
                 tn=editText3.getText().toString();
         String avail ="0";
                avail =editText5.getText().toString();
+               String name = editText8.getText ().toString ();
         int t =0;
         t=Integer.valueOf ( tn );
         int a = 0;
           a=      Integer.valueOf ( avail );
-        myData.execSQL ( "insert into train values("+t+","+a+")");
-        Cursor c;
-        c = myData.rawQuery ( "select trainNo,availability from train", null );
 
-        int numberIndex = c.getColumnIndex ( "trainNo" );
+        myData.execSQL ( "insert into train values("+t+","+a+",'"+name+"')");
+        Cursor c;
+       // c = myData.rawQuery ( "select trainNo,availability from train", null );
+
+        /*int numberIndex = c.getColumnIndex ( "trainNo" );
         int Availindex = c.getColumnIndex ( "availability" );
         c.moveToFirst ();
         do{
@@ -38,7 +41,7 @@ public class AddDetailsActivity extends AppCompatActivity {
             Log.i ( "available", c.getString ( Availindex ) );
 
         }while( c.moveToNext ());
-        c.close ();
+        c.close ();*/
         Intent intent = new Intent(getApplicationContext(),AdmiinActivity.class);
         startActivity(intent);
     }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent" >
+
+<TextView
+    android:id="@+id/tvid"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="TrainName" />
+    <TextView
+        android:id="@+id/tvsrc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TrainName" />
+    <TextView
+        android:id="@+id/tvdest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TrainName" />
+    <TextView
+        android:id="@+id/tvdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TrainName" />
+<TextView
+    android:id="@+id/tvseat"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Availbility" />
+    <TextView
+        android:id="@+id/tvtno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Availbility" />
+
+</LinearLayout>

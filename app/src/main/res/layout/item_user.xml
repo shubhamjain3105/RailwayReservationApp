@@ -8,9 +8,15 @@ android:layout_height="match_parent" >
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Train" />
-<TextView
+    <TextView
+        android:id="@+id/tvtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TrainName" />
+    <TextView
     android:id="@+id/tvHome"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Availbility" />
+
 </LinearLayout>
