@@ -28,11 +28,15 @@ public class AdmiinActivity extends AppCompatActivity {
     SQLiteDatabase myData;
     private Object adapterView;
     public  int intValue=0;
-
+    public  void goBack(View view)
+    {
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(intent);
+    }
     public void  AddDetails(View view)
     {    Cursor c;
         try (SQLiteDatabase myData = this.openOrCreateDatabase("RailData", MODE_PRIVATE, null)) {
-           // myData.execSQL ( "drop table train" );
+        //  myData.execSQL ( "drop table train" );
             myData.execSQL ( "create table if not exists train(trainNo INT(10) primary key,availability INT(3),trainName TEXT)" );
 
         }
@@ -69,6 +73,11 @@ public class AdmiinActivity extends AppCompatActivity {
         }// Add item to adapter
 
     }
+    public void listViewing(View view)
+    {
+        Intent myIntent = new Intent ( getApplicationContext (),ShowList.class );
+        startActivity ( myIntent );
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +85,7 @@ public class AdmiinActivity extends AppCompatActivity {
         Cursor c;
         final Intent intent = new Intent(getApplicationContext(),AdmiinActivity.class);
         final ArrayList<User> arrayOfUsers = new ArrayList<User>();
+      //  final ArrayList<User> arrayOfUsers = new ArrayList<User>();
 // Create the adapter to convert the array to views
         final UsersAdapter adapter = new UsersAdapter(this, arrayOfUsers);
 // Attach the adapter to a ListView
@@ -83,7 +93,7 @@ public class AdmiinActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
         final SQLiteDatabase myData = this.openOrCreateDatabase("RailData", MODE_PRIVATE, null);
         //SQLiteDatabase myData = this.openOrCreateDatabase("RailData", MODE_PRIVATE, null)) {
-           //myData.execSQL ( "drop table train" );
+         // myData.execSQL ( "drop table train" );
             myData.execSQL ( "create table if not exists train(trainNo INT(10) primary key,availability INT(3),trainName TEXT)" );
       //  myData.execSQL ( "delete from train" );
         c = myData.rawQuery ( "select * from train", null );
@@ -95,6 +105,7 @@ public class AdmiinActivity extends AppCompatActivity {
         while( c.moveToNext ()){
             Log.i ( "number", c.getString ( numberIndex ) );
             Log.i ( "available", c.getString ( Availindex ) );
+            Log.i("name",c.getString ( trainIndex ));
             User newUser = new User("Train no: "+c.getString ( numberIndex )+"  ","Availability: "+ c.getString ( Availindex )+"  ","  "+c.getString ( trainIndex )+"  ");
             adapter.add(newUser);
         }
@@ -111,7 +122,7 @@ public class AdmiinActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                           Log.i("Index",Integer.toString(itemTodelete));
-                             String delete =arrayOfUsers.get ( itemTodelete ).name.toString ();
+                            String delete =arrayOfUsers.get ( itemTodelete ).name.toString ();
                             String intValue = delete.replaceAll("[^0-9]", "");
                             Log.i("Deleted",intValue);
                             myData.execSQL ( "delete from train where trainNo="+intValue+"" );
