@@ -4,68 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fw"
     tools:context=".UpdateActivity">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="269dp"
-        tools:layout_editor_absoluteY="291dp">
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="68dp"
+        android:background="@android:drawable/button_onoff_indicator_on"
+        android:backgroundTint="#E0E0E0"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/editText7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TableRow
-            android:layout_width="100dp"
-            android:layout_height="match_parent" >
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="163dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="13dp"
+        android:background="@android:drawable/button_onoff_indicator_on"
+        android:backgroundTint="#E0E0E0"
+        android:ems="10"
+        android:hint="Availability"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.565" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Train No:" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="textStart" />
-
-            <EditText
-                android:id="@+id/editText6"
-                android:layout_width="724dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="100dp"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Availability:" />
-
-            <EditText
-                android:id="@+id/editText7"
-                android:layout_width="780dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="100dp"
-            android:layout_height="match_parent" >
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="updateData"
-                android:text="Update" />
-        </TableRow>
-
-    </TableLayout>
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="337dp"
+        android:background="@android:drawable/button_onoff_indicator_on"
+        android:backgroundTint="#E0E0E0"
+        android:onClick="updateData"
+        android:text="Update"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

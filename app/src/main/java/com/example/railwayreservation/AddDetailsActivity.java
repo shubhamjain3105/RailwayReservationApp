@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddDetailsActivity extends AppCompatActivity {
     EditText editText3,editText5,editText8;
@@ -28,10 +29,10 @@ public class AddDetailsActivity extends AppCompatActivity {
         t=Integer.valueOf ( tn );
         int a = 0;
           a=      Integer.valueOf ( avail );
-
-        myData.execSQL ( "insert into train values("+t+","+a+",'"+name+"')");
+    try {
+        myData.execSQL ( "insert into train values(" + t + "," + a + ",'" + name + "')" );
         Cursor c;
-       // c = myData.rawQuery ( "select trainNo,availability from train", null );
+        // c = myData.rawQuery ( "select trainNo,availability from train", null );
 
         /*int numberIndex = c.getColumnIndex ( "trainNo" );
         int Availindex = c.getColumnIndex ( "availability" );
@@ -42,8 +43,13 @@ public class AddDetailsActivity extends AppCompatActivity {
 
         }while( c.moveToNext ());
         c.close ();*/
-        Intent intent = new Intent(getApplicationContext(),AdmiinActivity.class);
-        startActivity(intent);
+        Intent intent = new Intent ( getApplicationContext (), AdmiinActivity.class );
+        startActivity ( intent );
+    }
+    catch (Exception e)
+    {
+        Toast.makeText ( getApplicationContext (),"Record Already Exists",Toast.LENGTH_SHORT ).show ();
+    }
     }
     @Override
     protected void onCreate(Bundle savedInstanceState){

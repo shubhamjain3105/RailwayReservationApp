@@ -76,10 +76,10 @@ public class BookActivity extends AppCompatActivity {
                 if (seatNum >= seatTotal) {
                     Log.i ( "booked", "confirm" );
                     int temp = seatNum - seatTotal;
-                    Log.i("destination is ",dCity);
-                    myData.execSQL ( "insert into ticket values(" + r + ",'" + sCity + "','" + dCity + "','" + tDate + "',"+seatTotal+"," + result + ")" );
+                    Log.i ( "destination is ", dCity );
+                    myData.execSQL ( "insert into ticket values(" + r + ",'" + sCity + "','" + dCity + "','" + tDate + "'," + seatTotal + "," + result + ")" );
                     Cursor c1;
-                   // int temp = seatNum - seatTotal;
+                    // int temp = seatNum - seatTotal;
                     ContentValues newValues = new ContentValues ();
                     //newValues.put("trainNo", trainNum);
                     newValues.put ( "availability", temp );
@@ -87,7 +87,7 @@ public class BookActivity extends AppCompatActivity {
                     myData.update ( "train", newValues, "trainNo=?", new String[]{answers} );
                     Toast.makeText ( getApplicationContext (), "Booking Successfull", Toast.LENGTH_SHORT ).show ();
                     c1 = myData.rawQuery ( "select * from ticket", null );
-                Log.i("Check",c1.toString ());
+                    Log.i ( "Check", c1.toString () );
                     int ticketIndex = c1.getColumnIndex ( "ticketId" );
                     int srcindex = c1.getColumnIndex ( "srcName" );
                     int destIndex = c1.getColumnIndex ( "destName" );
@@ -95,7 +95,7 @@ public class BookActivity extends AppCompatActivity {
                     int seatindex = c1.getColumnIndex ( "seat" );
                     int trainNom = c1.getColumnIndex ( "trainNo" );
                     c1.moveToFirst ();
-                    Log.i("SeatIndex", String.valueOf ( seatindex ) );
+                    Log.i ( "SeatIndex", String.valueOf ( seatindex ) );
                     do {
                         Log.i ( "number", c1.getString ( ticketIndex ) );
                         Log.i ( "train num", c1.getString ( trainNom ) );
@@ -103,11 +103,14 @@ public class BookActivity extends AppCompatActivity {
                         Log.i ( "train num", c1.getString ( seatindex ) );
 
                         //adapter.add(newUser);
-                    }while (c1.moveToNext ());
+                    } while (c1.moveToNext ());
                     c1.close ();
                     c.close ();
                     Intent intent = new Intent ( getApplicationContext (), CustomerActivity.class );
                     startActivity ( intent );
+                } else
+                {
+                    Toast.makeText (getApplicationContext () ,"Required Seats are not available",Toast.LENGTH_LONG ).show ();
                 }
             }
 

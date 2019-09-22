@@ -41,12 +41,14 @@ public class CustomerActivity extends AppCompatActivity {
         SQLiteDatabase myData =  this.openOrCreateDatabase ( "RailData",MODE_PRIVATE,null );
         EditText editText14 = findViewById ( R.id.editText14 );
         String result = editText14.getText ().toString ();
-        try{int  intResult;
+        try{
+            int  intResult;
             try{  intResult = Integer.parseInt ( result );}
             catch (NumberFormatException n)
             {
             intResult = 0;}
 
+    try{
 
             Cursor c = myData.rawQuery ( "select * from train where trainNo like " + intResult + " or trainName like '" + result + "'" ,null);
             Log.i("cursor",c.toString ());
@@ -54,8 +56,8 @@ public class CustomerActivity extends AppCompatActivity {
             int tavl = c.getColumnIndex ( "availability" );
             int tnae  = c.getColumnIndex ( "trainName" );
            c.moveToFirst ();
-            if(c==null)
-            {}
+            if(c.getCount ()==0)
+            { Toast.makeText ( getApplicationContext (),"Record Not found",Toast.LENGTH_SHORT ).show ();}
             else {
                 Log.i ( "train no", c.getString ( tnom1 ) );
                 Log.i ( "avail", c.getString ( tavl ) );
@@ -83,6 +85,8 @@ public class CustomerActivity extends AppCompatActivity {
 
             }
             //Toast.makeText ( getApplicationContext (),"Record found",Toast.LENGTH_SHORT ).show ();
+        }catch (IllegalStateException  s)
+    { Toast.makeText ( getApplicationContext (),"Record Not found",Toast.LENGTH_SHORT ).show ();}
         }
         catch(IllegalStateException e)
         {
@@ -173,14 +177,13 @@ public class CustomerActivity extends AppCompatActivity {
         }
         c1.close ();
         int deletedSeat=0;
-       // myData.execSQL ( "drop trigger t1" );
-       // myData.execSQL ( "drop trigger t2" );
-        myData.execSQL ( "create trigger if not exists t3" +
+       // myData.execSQL ( "drop trigger t1" )
+        //;myData.execSQL ( "drop trigger t4" );
+        myData.execSQL ( "create trigger if not exists t4" +
                 " after delete " +
-                "on ticket" +
-                " for each row begin" +
+                "on ticket" +" begin"+
                 " update train  set availability=availability +old.seat where trainNo= old.trainNo;" +
-                "end" );
+                "end " );
          listView1.setOnItemLongClickListener ( new AdapterView.OnItemLongClickListener () {
              @Override
              public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {

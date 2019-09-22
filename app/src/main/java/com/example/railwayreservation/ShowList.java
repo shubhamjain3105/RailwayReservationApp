@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 
@@ -84,6 +85,12 @@ public class ShowList extends AppCompatActivity {
         Cursor c1;
 
         c1 = myData.rawQuery ( "select ticketId,datetod,seat,trainNo from ticket", null );
+        if(c1==null)
+        {
+            Toast.makeText ( getApplicationContext (),"No Bookings done yet",Toast.LENGTH_SHORT ).show ();
+            Intent intent2 = new Intent ( getApplicationContext (),AdmiinActivity.class );
+            startActivity ( intent2 );
+        }
         Log.i("cursor",c1.toString ());
          int ticketIndex = c1.getColumnIndex ( "ticketId" );
         //int srcindex = c1.getColumnIndex ( "src" );

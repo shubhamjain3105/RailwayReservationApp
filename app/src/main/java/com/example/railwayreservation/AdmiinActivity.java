@@ -36,7 +36,7 @@ public class AdmiinActivity extends AppCompatActivity {
     public void  AddDetails(View view)
     {    Cursor c;
         try (SQLiteDatabase myData = this.openOrCreateDatabase("RailData", MODE_PRIVATE, null)) {
-        //  myData.execSQL ( "drop table train" );
+         //myData.execSQL ( "drop table train" );
             myData.execSQL ( "create table if not exists train(trainNo INT(10) primary key,availability INT(3),trainName TEXT)" );
 
         }
@@ -93,7 +93,7 @@ public class AdmiinActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
         final SQLiteDatabase myData = this.openOrCreateDatabase("RailData", MODE_PRIVATE, null);
         //SQLiteDatabase myData = this.openOrCreateDatabase("RailData", MODE_PRIVATE, null)) {
-         // myData.execSQL ( "drop table train" );
+         //myData.execSQL ( "drop table train" );
             myData.execSQL ( "create table if not exists train(trainNo INT(10) primary key,availability INT(3),trainName TEXT)" );
       //  myData.execSQL ( "delete from train" );
         c = myData.rawQuery ( "select * from train", null );
